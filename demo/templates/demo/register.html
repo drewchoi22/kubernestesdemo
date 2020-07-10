@@ -1,0 +1,24 @@
+{% extends "demo/base.html" %}
+
+<!-- Main content of the Register page-->
+{% block content %}
+	<form method="POST" action="{% url 'register' %}">
+		<span id="id_name_of_page" class="page-name"> Register </span>
+		<table class="page-info">
+			{% for field in form.visible_fields %}
+	            <tr>
+	                <td>{{field.label_tag}}</td>
+	                <td>{{field}}</td>
+	                <td class="errorlist">
+	                    {% for error in field.errors %} {{error}} {% endfor %}
+	                </td>
+	            </tr>
+	        {% endfor %}
+	        <tr>
+	        	<td><button type="submit" id="id_register_button" class="btns">Submit</button></td>
+	        </tr>
+	    </table>
+		{% csrf_token %}
+	</form>
+
+{% endblock %}
